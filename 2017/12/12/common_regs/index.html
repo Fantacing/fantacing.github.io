@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        (转)常用的一些正则表达式 · ckdk&#39;s blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">(转)常用的一些正则表达式</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>ckdk's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            (转)常用的一些正则表达式
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/12</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="转-常用的一些正则表达式"><a href="#转-常用的一些正则表达式" class="headerlink" title="(转)常用的一些正则表达式"></a>(转)常用的一些正则表达式</h1><h3 id="1-校验密码强度"><a href="#1-校验密码强度" class="headerlink" title="1 . 校验密码强度"></a>1 . 校验密码强度</h3><p>密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-校验中文"><a href="#2-校验中文" class="headerlink" title="2. 校验中文"></a>2. 校验中文</h3><p>字符串仅能是中文。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[\\u4e00-\\u9fa5]&#123;0,&#125;$</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-由数字、26个英文字母或下划线组成的字符串"><a href="#3-由数字、26个英文字母或下划线组成的字符串" class="headerlink" title="3. 由数字、26个英文字母或下划线组成的字符串"></a>3. 由数字、26个英文字母或下划线组成的字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\\w+$</span><br></pre></td></tr></table></figure>
+<h3 id="4-校验E-Mail-地址"><a href="#4-校验E-Mail-地址" class="headerlink" title="4. 校验E-Mail 地址"></a>4. 校验E-Mail 地址</h3><p>同密码一样，下面是E-mail地址合规性的正则检查语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-校验身份证号码"><a href="#5-校验身份证号码" class="headerlink" title="5. 校验身份证号码"></a>5. 校验身份证号码</h3><p>下面是身份证号码的正则校验。15 或 18位。<br>15位：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$</span><br></pre></td></tr></table></figure></p>
+<p>18位：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$</span><br></pre></td></tr></table></figure>
+<h3 id="6-校验日期"><a href="#6-校验日期" class="headerlink" title="6. 校验日期"></a>6. 校验日期</h3><p>“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-校验金额"><a href="#7-校验金额" class="headerlink" title="7. 校验金额"></a>7. 校验金额</h3><p>金额校验，精确到2位小数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br></pre></td></tr></table></figure></p>
+<h3 id="8-校验手机号"><a href="#8-校验手机号" class="headerlink" title="8. 校验手机号"></a>8. 校验手机号</h3><p>下面是国内 13、15、18开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d&#123;8&#125;$</span><br></pre></td></tr></table></figure></p>
+<h3 id="9-判断IE的版本"><a href="#9-判断IE的版本" class="headerlink" title="9. 判断IE的版本"></a>9. 判断IE的版本</h3><p>IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\/[5-9]\\.0).*$</span><br></pre></td></tr></table></figure></p>
+<h3 id="10-校验IP-v4地址"><a href="#10-校验IP-v4地址" class="headerlink" title="10. 校验IP-v4地址"></a>10. 校验IP-v4地址</h3><p>IP4 正则语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b</span><br></pre></td></tr></table></figure></p>
+<h3 id="11-校验IP-v6地址"><a href="#11-校验IP-v6地址" class="headerlink" title="11. 校验IP-v6地址"></a>11. 校验IP-v6地址</h3><p>IP6 正则语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))</span><br></pre></td></tr></table></figure></p>
+<h3 id="12-检查URL的前缀"><a href="#12-检查URL的前缀" class="headerlink" title="12. 检查URL的前缀"></a>12. 检查URL的前缀</h3><p>应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (!s.match(/^[a-zA-Z]+:\\/\\//))</span><br><span class="line">&#123;</span><br><span class="line">    s = &apos;http://&apos; + s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="13-提取URL链接"><a href="#13-提取URL链接" class="headerlink" title="13. 提取URL链接"></a>13. 提取URL链接</h3><p>下面的这个表达式可以筛选出一段文本中的URL。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(f|ht)&#123;1&#125;(tp|tps):\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- ./?%&amp;=]*)?</span><br></pre></td></tr></table></figure></p>
+<h3 id="14-文件路径及扩展名校验"><a href="#14-文件路径及扩展名校验" class="headerlink" title="14. 文件路径及扩展名校验"></a>14. 文件路径及扩展名校验</h3><p>验证windows下文件路径和扩展名（下面的例子中为.txt文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^([a-zA-Z]\\:|\\\\)\\\\([^\\\\]+\\\\)*[^\\/:*?&quot;&lt;&gt;|]+\\.txt(l)?$</span><br></pre></td></tr></table></figure></p>
+<h3 id="15-提取Color-Hex-Codes"><a href="#15-提取Color-Hex-Codes" class="headerlink" title="15. 提取Color Hex Codes"></a>15. 提取Color Hex Codes</h3><p>有时需要抽取网页中的颜色代码，可以使用下面的表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^#([A-Fa-f0-9]&#123;6&#125;|[A-Fa-f0-9]&#123;3&#125;)$</span><br></pre></td></tr></table></figure></p>
+<h3 id="16-提取网页图片"><a href="#16-提取网页图片" class="headerlink" title="16. 提取网页图片"></a>16. 提取网页图片</h3><p>假若你想提取网页中所有图片信息，可以利用下面的表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\&lt; *[img][^\\\\&gt;]*[src] *= *[\\&quot;\\&apos;]&#123;0,1&#125;([^\\&quot;\\&apos;\\ &gt;]*)</span><br></pre></td></tr></table></figure></p>
+<h3 id="17-提取页面超链接"><a href="#17-提取页面超链接" class="headerlink" title="17. 提取页面超链接"></a>17. 提取页面超链接</h3><p>提取html中的超链接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=&quot;https?:\\/\\/)((?!(?:(?:www\\.)?&apos;.implode(&apos;|(?:www\\.)?&apos;, $follow_list).&apos;))[^&quot;]+)&quot;((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="18-查找CSS属性"><a href="#18-查找CSS属性" class="headerlink" title="18. 查找CSS属性"></a>18. 查找CSS属性</h3><p>通过下面的表达式，可以搜索到相匹配的CSS属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\\s*[a-zA-Z\\-]+\\s*[:]&#123;1&#125;\\s[a-zA-Z0-9\\s.#]+[;]&#123;1&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="19-抽取注释"><a href="#19-抽取注释" class="headerlink" title="19. 抽取注释"></a>19. 抽取注释</h3><p>如果你需要移除HMTL中的注释，可以使用如下的表达式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--(.*?)--&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="20-匹配HTML标签"><a href="#20-匹配HTML标签" class="headerlink" title="20. 匹配HTML标签"></a>20. 匹配HTML标签</h3><p>通过下面的表达式可以匹配出HTML中的标签属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:&quot;.*?&quot;|&apos;.*?&apos;|[\\^&apos;&quot;&gt;\\s]+))?)+\\s*|\\s*)\\/?&gt;</span><br></pre></td></tr></table></figure></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/12/12/git_always_use_cmd/" title= git常用命令 >
+                    <span>Next Post</span>
+                    <span>git常用命令</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/12/ubuntu_git_info_show/" title= 在ubuntu终端下显示git分支信息 >
+                    <span>Previous Post</span>
+                    <span>在ubuntu终端下显示git分支信息</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:578923779@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fantacing" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#转-常用的一些正则表达式"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x8F6C;-&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;" class="headerlink" title="(&#x8F6C;)&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;"></a>(&#x8F6C;)&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-校验密码强度"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#1-&#x6821;&#x9A8C;&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;" class="headerlink" title="1 . &#x6821;&#x9A8C;&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;"></a>1 . &#x6821;&#x9A8C;&#x5BC6;&#x7801;&#x5F3A;&#x5EA6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-校验中文"><span class="toc-number">1.0.2.</span> <span class="toc-text"><a href="#2-&#x6821;&#x9A8C;&#x4E2D;&#x6587;" class="headerlink" title="2. &#x6821;&#x9A8C;&#x4E2D;&#x6587;"></a>2. &#x6821;&#x9A8C;&#x4E2D;&#x6587;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-由数字、26个英文字母或下划线组成的字符串"><span class="toc-number">1.0.3.</span> <span class="toc-text"><a href="#3-&#x7531;&#x6570;&#x5B57;&#x3001;26&#x4E2A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x6216;&#x4E0B;&#x5212;&#x7EBF;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="3. &#x7531;&#x6570;&#x5B57;&#x3001;26&#x4E2A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x6216;&#x4E0B;&#x5212;&#x7EBF;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;"></a>3. &#x7531;&#x6570;&#x5B57;&#x3001;26&#x4E2A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x6216;&#x4E0B;&#x5212;&#x7EBF;&#x7EC4;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-校验E-Mail-地址"><span class="toc-number">1.0.4.</span> <span class="toc-text"><a href="#4-&#x6821;&#x9A8C;E-Mail-&#x5730;&#x5740;" class="headerlink" title="4. &#x6821;&#x9A8C;E-Mail &#x5730;&#x5740;"></a>4. &#x6821;&#x9A8C;E-Mail &#x5730;&#x5740;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-校验身份证号码"><span class="toc-number">1.0.5.</span> <span class="toc-text"><a href="#5-&#x6821;&#x9A8C;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&#x7801;" class="headerlink" title="5. &#x6821;&#x9A8C;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&#x7801;"></a>5. &#x6821;&#x9A8C;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&#x7801;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-校验日期"><span class="toc-number">1.0.6.</span> <span class="toc-text"><a href="#6-&#x6821;&#x9A8C;&#x65E5;&#x671F;" class="headerlink" title="6. &#x6821;&#x9A8C;&#x65E5;&#x671F;"></a>6. &#x6821;&#x9A8C;&#x65E5;&#x671F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-校验金额"><span class="toc-number">1.0.7.</span> <span class="toc-text"><a href="#7-&#x6821;&#x9A8C;&#x91D1;&#x989D;" class="headerlink" title="7. &#x6821;&#x9A8C;&#x91D1;&#x989D;"></a>7. &#x6821;&#x9A8C;&#x91D1;&#x989D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-校验手机号"><span class="toc-number">1.0.8.</span> <span class="toc-text"><a href="#8-&#x6821;&#x9A8C;&#x624B;&#x673A;&#x53F7;" class="headerlink" title="8. &#x6821;&#x9A8C;&#x624B;&#x673A;&#x53F7;"></a>8. &#x6821;&#x9A8C;&#x624B;&#x673A;&#x53F7;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-判断IE的版本"><span class="toc-number">1.0.9.</span> <span class="toc-text"><a href="#9-&#x5224;&#x65AD;IE&#x7684;&#x7248;&#x672C;" class="headerlink" title="9. &#x5224;&#x65AD;IE&#x7684;&#x7248;&#x672C;"></a>9. &#x5224;&#x65AD;IE&#x7684;&#x7248;&#x672C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-校验IP-v4地址"><span class="toc-number">1.0.10.</span> <span class="toc-text"><a href="#10-&#x6821;&#x9A8C;IP-v4&#x5730;&#x5740;" class="headerlink" title="10. &#x6821;&#x9A8C;IP-v4&#x5730;&#x5740;"></a>10. &#x6821;&#x9A8C;IP-v4&#x5730;&#x5740;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-校验IP-v6地址"><span class="toc-number">1.0.11.</span> <span class="toc-text"><a href="#11-&#x6821;&#x9A8C;IP-v6&#x5730;&#x5740;" class="headerlink" title="11. &#x6821;&#x9A8C;IP-v6&#x5730;&#x5740;"></a>11. &#x6821;&#x9A8C;IP-v6&#x5730;&#x5740;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-检查URL的前缀"><span class="toc-number">1.0.12.</span> <span class="toc-text"><a href="#12-&#x68C0;&#x67E5;URL&#x7684;&#x524D;&#x7F00;" class="headerlink" title="12. &#x68C0;&#x67E5;URL&#x7684;&#x524D;&#x7F00;"></a>12. &#x68C0;&#x67E5;URL&#x7684;&#x524D;&#x7F00;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-提取URL链接"><span class="toc-number">1.0.13.</span> <span class="toc-text"><a href="#13-&#x63D0;&#x53D6;URL&#x94FE;&#x63A5;" class="headerlink" title="13. &#x63D0;&#x53D6;URL&#x94FE;&#x63A5;"></a>13. &#x63D0;&#x53D6;URL&#x94FE;&#x63A5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-文件路径及扩展名校验"><span class="toc-number">1.0.14.</span> <span class="toc-text"><a href="#14-&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x53CA;&#x6269;&#x5C55;&#x540D;&#x6821;&#x9A8C;" class="headerlink" title="14. &#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x53CA;&#x6269;&#x5C55;&#x540D;&#x6821;&#x9A8C;"></a>14. &#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x53CA;&#x6269;&#x5C55;&#x540D;&#x6821;&#x9A8C;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-提取Color-Hex-Codes"><span class="toc-number">1.0.15.</span> <span class="toc-text"><a href="#15-&#x63D0;&#x53D6;Color-Hex-Codes" class="headerlink" title="15. &#x63D0;&#x53D6;Color Hex Codes"></a>15. &#x63D0;&#x53D6;Color Hex Codes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-提取网页图片"><span class="toc-number">1.0.16.</span> <span class="toc-text"><a href="#16-&#x63D0;&#x53D6;&#x7F51;&#x9875;&#x56FE;&#x7247;" class="headerlink" title="16. &#x63D0;&#x53D6;&#x7F51;&#x9875;&#x56FE;&#x7247;"></a>16. &#x63D0;&#x53D6;&#x7F51;&#x9875;&#x56FE;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-提取页面超链接"><span class="toc-number">1.0.17.</span> <span class="toc-text"><a href="#17-&#x63D0;&#x53D6;&#x9875;&#x9762;&#x8D85;&#x94FE;&#x63A5;" class="headerlink" title="17. &#x63D0;&#x53D6;&#x9875;&#x9762;&#x8D85;&#x94FE;&#x63A5;"></a>17. &#x63D0;&#x53D6;&#x9875;&#x9762;&#x8D85;&#x94FE;&#x63A5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-查找CSS属性"><span class="toc-number">1.0.18.</span> <span class="toc-text"><a href="#18-&#x67E5;&#x627E;CSS&#x5C5E;&#x6027;" class="headerlink" title="18. &#x67E5;&#x627E;CSS&#x5C5E;&#x6027;"></a>18. &#x67E5;&#x627E;CSS&#x5C5E;&#x6027;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-抽取注释"><span class="toc-number">1.0.19.</span> <span class="toc-text"><a href="#19-&#x62BD;&#x53D6;&#x6CE8;&#x91CA;" class="headerlink" title="19. &#x62BD;&#x53D6;&#x6CE8;&#x91CA;"></a>19. &#x62BD;&#x53D6;&#x6CE8;&#x91CA;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-匹配HTML标签"><span class="toc-number">1.0.20.</span> <span class="toc-text"><a href="#20-&#x5339;&#x914D;HTML&#x6807;&#x7B7E;" class="headerlink" title="20. &#x5339;&#x914D;HTML&#x6807;&#x7B7E;"></a>20. &#x5339;&#x914D;HTML&#x6807;&#x7B7E;</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 5 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/common_regs/" >(转)常用的一些正则表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/summermote_upload_files/" >summernote图片上传到服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
