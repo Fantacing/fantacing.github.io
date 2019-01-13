@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        [404] · ckdk&#39;s blog
+        ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,8 +50,6 @@
     
 </head>
     
-        <body class="four-zero-four-body">
-    
     
 <header class="header">
 
@@ -64,26 +62,18 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- about页 -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            [404]
-            <!-- about -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-                page not found.xi xi xi.
             
         </p>
         <!-- 文章页meta -->
@@ -154,8 +144,68 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
+            <main class="main index-page">
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/05/31/djano_and_vue/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>前后端分离实践(django + vue)</span>
+                    </h2>
+                <div class="abstract-content">
+                    创建Vue项目环境搭建安装npm
+安装vue-cli
 
+1npm install -g @vue/cli
+
+创建vue项目
+
+1vue create fronted
+创建django项目安装djangopass
+创建项目+编写测试接口pass
+解决django跨域问题安装django-cors-headers1pip install django-cors-headers
+添加app12345INSTALLED_APPS = (    ...    'corsheaders',    ...)
+添加中间件123456MIDDLEWARE = [ # 注意顺序    ...    'cor...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/05/31</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/05/18/learn_to_use_tidb/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>测试搭建TIDB</span>
+                    </h2>
+                <div class="abstract-content">
+                    简介TiDB 是 PingCAP 公司受 Google Spanner / F1 论文启发而设计的开源分布式 HTAP (Hybrid Transactional and Analytical Processing) 数据库，结合了传统的 RDBMS 和 NoSQL 的最佳特性。TiDB 兼容 MySQL，支持无限的水平扩展，具备强一致性和高可用性。TiDB 的目标是为 OLTP (Online Transactional Processing) 和 OLAP (Online Analytical Processing) 场景提供一站式的解决方案。
+部署在PingCap官方文档提供了几种...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/05/18</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
+    
+</main>
             <!-- profile -->
             
         </div>

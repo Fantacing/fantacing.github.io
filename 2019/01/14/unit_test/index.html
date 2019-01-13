@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        单元测试 · ckdk&#39;s blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">单元测试</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>ckdk's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            单元测试
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2019/01/14</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试?"></a>什么是单元测试?</h1><p>单元测试（unit testing），是指对软件中的最小可测试单元进行检查和验证。对于单元测试中单元的含义，一般来说，要根据实际情况去判定其具体含义，如C语言中单元指一个函数，Java里单元指一个类，图形化的软件中可以指一个窗口或一个菜单等。总的来说，单元就是人为规定的最小的被测功能模块。单元测试是在软件开发过程中要进行的最低级别的测试活动，软件的独立单元将在与程序的其他部分相隔离的情况下进行测试。</p>
+<h1 id="为什么要写单元测试"><a href="#为什么要写单元测试" class="headerlink" title="为什么要写单元测试?"></a>为什么要写单元测试?</h1><blockquote>
+<p>写单元测试似乎是一件很枯燥很乏味的工作，又似乎需要花费一些时间。那我们为什么要写单元测试那? </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 通过编写测试代码更能明白你所做应用的目的和意图，没有测试，这些将会变得很模糊。</span><br><span class="line">2. 通过单元测试能使你很容易的发现在引入新代码之后所带来的问题，没有单元测试，</span><br><span class="line">    你可能不会发现这些问题，或者在遇到问题后你要花几个小时去寻找问题出在哪。</span><br><span class="line">3. 有测试的代码更受人欢迎。</span><br><span class="line">4. 测试有助于团队合作，测试能够减少同事无意间破坏你的代码的机会。</span><br></pre></td></tr></table></figure>
+<h1 id="如何编写测试？"><a href="#如何编写测试？" class="headerlink" title="如何编写测试？"></a>如何编写测试？</h1><ul>
+<li>单元测试的根本目的是验证代码行为是否符合预期，所以通常我们需要设计用例，验证在给定输入的情况下是否能得到我们想要的输出</li>
+</ul>
+<p>在python中，通常使用自带的unittest或者第三方包nose进行单元测试。这里我们选择使用nose<br>进行测试。这里选择使用nose的原因是因为nose的使用更简单、快速、灵活，无需编写类。</p>
+<h2 id="nose使用："><a href="#nose使用：" class="headerlink" title="nose使用："></a>nose使用：</h2><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install nose</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nosetests [options] [test files or directories]</span><br><span class="line"></span><br><span class="line">如果不加目录，默认执行当前目录下的所有符合nose条件的用例</span><br><span class="line">如果加目录，则运行指定目录里面符合nose条件的用例</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里符合nose条件指的是当前目录及子目录下名字包含test开头的文件和目录中名字以test开头的方法</p>
+</blockquote>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def tearDown():</span><br><span class="line">        print &quot;teardown&quot;</span><br><span class="line">def test1():</span><br><span class="line">        print 1</span><br><span class="line">def test2():</span><br><span class="line">        print 2</span><br><span class="line">def setUp():</span><br><span class="line">        print &quot;this setup&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">nosetests -s -v  </span><br><span class="line"></span><br><span class="line">setup</span><br><span class="line">testnose.test1 ... 1</span><br><span class="line">ok</span><br><span class="line">testnose.test2 ... 2</span><br><span class="line">ok</span><br><span class="line">teardown</span><br><span class="line">=</span><br><span class="line">------------------------------------------------</span><br><span class="line">Ran 2tests in 0.010s</span><br><span class="line"></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<p>nose优先执行setUp，最后执行tearDown，和函数的位置没关系。在setUp中我们可以创建数据库及一些用的测试数据等准备工作，执行完测试用例后再在tearDown中删除测试数据并关闭连接。</p>
+<ul>
+<li>nose中的函数</li>
+</ul>
+<p>在nose中 我们可以使用一些工具函数来辅助我们验证结果 如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf8</span></span><br><span class="line"><span class="keyword">from</span> nose <span class="keyword">import</span> tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证两个值是否相等</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span><span class="params">()</span>:</span></span><br><span class="line">    tools.assert_equal(<span class="keyword">True</span>, <span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证一个元素是否存在一个容器内</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_2</span><span class="params">()</span>:</span></span><br><span class="line">    tools.assert_in(<span class="number">3</span>, range(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过正则匹配验证，django视图和爬虫比较适合</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_3</span><span class="params">()</span>:</span></span><br><span class="line">    tools.assert_regexp_matches(<span class="string">'&lt;html&gt;&lt;div&gt;123&lt;/div&gt;&lt;html&gt;'</span>, <span class="string">r'&lt;div&gt;(.*?)&lt;/div&gt;'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_4</span><span class="params">()</span>:</span></span><br><span class="line">    tools.assert_regexp_matches(<span class="string">'&lt;html&gt;&lt;div&gt;123&lt;/div&gt;&lt;html&gt;'</span>, <span class="string">r'&lt;span&gt;(.*?)&lt;/span&gt;'</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nosetests -s -v test_sample.py </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_sample.test_1 ... FAIL</span><br><span class="line">test_sample.test_2 ... ok</span><br><span class="line">test_sample.test_3 ... ok</span><br><span class="line">test_sample.test_4 ... FAIL</span><br><span class="line"></span><br><span class="line">======================================================================</span><br><span class="line">FAIL: test_sample.test_1</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/lib/python2.7/site-packages/nose/case.py", line 197, in runTest</span><br><span class="line">    self.test(*self.arg)</span><br><span class="line">  File "/home/deploy/test_sample.py", line 6, in test_1</span><br><span class="line">    tools.assert_equal(True, False)</span><br><span class="line">AssertionError: True != False</span><br><span class="line"></span><br><span class="line">======================================================================</span><br><span class="line">FAIL: test_sample.test_4</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "/usr/lib/python2.7/site-packages/nose/case.py", line 197, in runTest</span><br><span class="line">    self.test(*self.arg)</span><br><span class="line">  File "/home/deploy/test_sample.py", line 20, in test_4</span><br><span class="line">    tools.assert_regexp_matches('&lt;html&gt;&lt;div&gt;123&lt;/div&gt;&lt;html&gt;', r'&lt;span&gt;(.*?)&lt;/span&gt;')</span><br><span class="line">AssertionError: Regexp didn't match: '&lt;span&gt;(.*?)&lt;/span&gt;' not found in '&lt;html&gt;&lt;div&gt;123&lt;/div&gt;&lt;html&gt;'</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">Ran 4 tests in 0.002s</span><br><span class="line"></span><br><span class="line">FAILED (failures=2)</span><br></pre></td></tr></table></figure>
+<p>从结果中可以看到两条不符合预期结果的测试用例没有通过。另外tools下还有还多其他方法供使用，很多从名字上就能看出是如何使用 大家自行参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">assert_almost_equal</span><br><span class="line">assert_almost_equals</span><br><span class="line">assert_dict_contains_subset</span><br><span class="line">assert_dict_equal</span><br><span class="line">assert_equal</span><br><span class="line">assert_equals</span><br><span class="line">assert_false</span><br><span class="line">assert_greater</span><br><span class="line">assert_greater_equal</span><br><span class="line">assert_in</span><br><span class="line">assert_is</span><br><span class="line">assert_is_instance</span><br><span class="line">assert_is_none</span><br><span class="line">assert_is_not</span><br><span class="line">assert_is_not_none</span><br><span class="line">assert_items_equal</span><br><span class="line">assert_less</span><br><span class="line">assert_less_equal</span><br><span class="line">assert_list_equal</span><br><span class="line">assert_multi_line_equal</span><br><span class="line">assert_not_almost_equal</span><br><span class="line">assert_not_almost_equals</span><br><span class="line">assert_not_equal</span><br><span class="line">assert_not_equals</span><br><span class="line">assert_not_in</span><br><span class="line">assert_not_is_instance</span><br><span class="line">assert_not_regexp_matches</span><br><span class="line">assert_raises</span><br><span class="line">assert_raises_regexp</span><br><span class="line">assert_regexp_matches</span><br><span class="line">assert_sequence_equal</span><br><span class="line">assert_set_equal</span><br><span class="line">assert_true</span><br><span class="line">assert_tuple_equal</span><br><span class="line">eq_</span><br><span class="line">istest</span><br><span class="line">make_decorator</span><br><span class="line">nontrivial</span><br><span class="line">nontrivial_all</span><br><span class="line">nottest</span><br><span class="line">ok_</span><br><span class="line">raises</span><br><span class="line">set_trace</span><br><span class="line">timed</span><br><span class="line">trivial</span><br><span class="line">trivial_all</span><br><span class="line">with_setup</span><br></pre></td></tr></table></figure>
+<h2 id="在django里进行单元测试"><a href="#在django里进行单元测试" class="headerlink" title="在django里进行单元测试"></a>在django里进行单元测试</h2><h3 id="使用django自带的单元测试框架"><a href="#使用django自带的单元测试框架" class="headerlink" title="使用django自带的单元测试框架"></a>使用django自带的单元测试框架</h3><p>具体的用法就不赘述了，这里推荐在使用django时，可以为debug和测试环境下单独创建一个settings文件，这样在测试时可以指定<code>--settings</code>参数用特定的配置文件进行测试</p>
+<p><code>-k</code>参数可以保留数据库状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py test app_name --settings project_name.settings-dev -k</span><br></pre></td></tr></table></figure>
+<h3 id="使用nose进行单元测试"><a href="#使用nose进行单元测试" class="headerlink" title="使用nose进行单元测试"></a>使用nose进行单元测试</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> django</span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> Client</span><br><span class="line"><span class="keyword">from</span> nose <span class="keyword">import</span> tools</span><br><span class="line"></span><br><span class="line">client = Client()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"\n---------test start------------"</span></span><br><span class="line">        os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"prj_name.settings"</span>)</span><br><span class="line">        django.setup()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        sys.exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_nose</span><span class="params">()</span>:</span></span><br><span class="line">    res = client.get(<span class="string">'/accounts/test/'</span>)</span><br><span class="line">    tools.assert_equal(res, <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"\n---------test accounts end------------"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们引入Client类， 使用Clinet类可以方便的用来访问django里的链接地址（使用requests也是一个不错的选择）。</li>
+<li>在setUp中我们设置下django的配置文件，并启动django，用于Client访问链接</li>
+</ul>
+<p>执行测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nosetests -s -v</span><br></pre></td></tr></table></figure>
+<p>另外， 对于其他的一些返回html的请求或者对于抓取网页内容的爬虫进行测试，个人建议可以验证返回的http状态码即可 或者通过正则匹配的方式验证是否包含我们想要的内容, 如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">res = client.get(<span class="string">'/xxx/xxx/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证返回的状态码</span></span><br><span class="line">tools.assert_equal(res.status_code, <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正则验证</span></span><br><span class="line">tools.assert_regexp_matches(res.content, <span class="string">r'想要验证的regx'</span>)</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/11/06/app_run_on_xcode_simulator/" title= 使用xcode ios模拟器调试Huilder打包的APP >
+                    <span>Previous Post</span>
+                    <span>使用xcode ios模拟器调试Huilder打包的APP</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:578923779@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fantacing" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是单元测试"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x5143;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x5143;&#x6D4B;&#x8BD5;?"></a>&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x5143;&#x6D4B;&#x8BD5;?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要写单元测试"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5199;&#x5355;&#x5143;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5199;&#x5355;&#x5143;&#x6D4B;&#x8BD5;?"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5199;&#x5355;&#x5143;&#x6D4B;&#x8BD5;?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何编写测试？"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5982;&#x4F55;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#xFF1F;" class="headerlink" title="&#x5982;&#x4F55;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#xFF1F;"></a>&#x5982;&#x4F55;&#x7F16;&#x5199;&#x6D4B;&#x8BD5;&#xFF1F;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#nose使用："><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#nose&#x4F7F;&#x7528;&#xFF1A;" class="headerlink" title="nose&#x4F7F;&#x7528;&#xFF1A;"></a>nose&#x4F7F;&#x7528;&#xFF1A;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在django里进行单元测试"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x5728;django&#x91CC;&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x5728;django&#x91CC;&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;"></a>&#x5728;django&#x91CC;&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用django自带的单元测试框架"><span class="toc-number">3.2.1.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;django&#x81EA;&#x5E26;&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;" class="headerlink" title="&#x4F7F;&#x7528;django&#x81EA;&#x5E26;&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;"></a>&#x4F7F;&#x7528;django&#x81EA;&#x5E26;&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用nose进行单元测试"><span class="toc-number">3.2.2.</span> <span class="toc-text"><a href="#&#x4F7F;&#x7528;nose&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x4F7F;&#x7528;nose&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;"></a>&#x4F7F;&#x7528;nose&#x8FDB;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/common_regs/" >(转)常用的一些正则表达式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

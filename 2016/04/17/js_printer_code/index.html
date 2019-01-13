@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        [404] · ckdk&#39;s blog
+        记录一段js实现打字机效果的代码 · ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,13 +50,22 @@
     
 </head>
     
-        <body class="four-zero-four-body">
+        <body class="post-body">
     
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">记录一段js实现打字机效果的代码</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>ckdk's blog</a>
 </header>
@@ -66,27 +75,35 @@
     <!-- 主页  -->
     
     
-    <!-- about页 -->
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            [404]
-            <!-- about -->
+            记录一段js实现打字机效果的代码
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-                page not found.xi xi xi.
+            
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2016/04/17</span>
+            </div>
         
     </div>
 </div>
@@ -154,8 +171,44 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="记录一段js实现打字机效果的代码"><a href="#记录一段js实现打字机效果的代码" class="headerlink" title="记录一段js实现打字机效果的代码"></a>记录一段js实现打字机效果的代码</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">        a.fn.typewriter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> d = a(<span class="keyword">this</span>),</span><br><span class="line">                        c = d.html(),</span><br><span class="line">                        b = <span class="number">0</span>;</span><br><span class="line">                        d.html(<span class="string">""</span>);</span><br><span class="line">                        <span class="keyword">var</span> e = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                                <span class="keyword">var</span> f = c.substr(b, <span class="number">1</span>);</span><br><span class="line">                                <span class="keyword">if</span> (f == <span class="string">"&lt;"</span>) &#123;</span><br><span class="line">                                        b = c.indexOf(<span class="string">"&gt;"</span>, b) + <span class="number">1</span></span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                        b++</span><br><span class="line">                                &#125;</span><br><span class="line">                                d.html(c.substring(<span class="number">0</span>, b) + ((b&lt;c.length<span class="number">-1</span>) ? <span class="string">"_"</span> : <span class="string">""</span>));</span><br><span class="line">                                <span class="keyword">if</span> (b &gt;= c.length) &#123;                                 </span><br><span class="line">                                        clearInterval(e)</span><br><span class="line">                                &#125;</span><br><span class="line">                        &#125;, <span class="number">55</span>)</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p>羡慕能写好js的人TAT。顺便膜拜一下这个网站: <a href="http://strml.net/" target="_blank" rel="noopener">http://strml.net/</a></p>
 
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2016/05/23/summermote_upload_files/" title= summernote图片上传到服务器 >
+                    <span>Next Post</span>
+                    <span>summernote图片上传到服务器</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2016/04/15/git_always_use_cmd/" title= git常用命令 >
+                    <span>Previous Post</span>
+                    <span>git常用命令</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
             <!-- profile -->
             
         </div>
@@ -192,6 +245,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#记录一段js实现打字机效果的代码"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x8BB0;&#x5F55;&#x4E00;&#x6BB5;js&#x5B9E;&#x73B0;&#x6253;&#x5B57;&#x673A;&#x6548;&#x679C;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="&#x8BB0;&#x5F55;&#x4E00;&#x6BB5;js&#x5B9E;&#x73B0;&#x6253;&#x5B57;&#x673A;&#x6548;&#x679C;&#x7684;&#x4EE3;&#x7801;"></a>&#x8BB0;&#x5F55;&#x4E00;&#x6BB5;js&#x5B9E;&#x73B0;&#x6253;&#x5B57;&#x673A;&#x6548;&#x679C;&#x7684;&#x4EE3;&#x7801;</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

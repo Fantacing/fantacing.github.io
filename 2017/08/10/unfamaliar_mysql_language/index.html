@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        [404] · ckdk&#39;s blog
+        记录一些不熟悉mysql语句和命令 · ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,13 +50,22 @@
     
 </head>
     
-        <body class="four-zero-four-body">
+        <body class="post-body">
     
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">记录一些不熟悉mysql语句和命令</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>ckdk's blog</a>
 </header>
@@ -66,27 +75,35 @@
     <!-- 主页  -->
     
     
-    <!-- about页 -->
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            [404]
-            <!-- about -->
+            记录一些不熟悉mysql语句和命令
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-                page not found.xi xi xi.
+            
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/08/10</span>
+            </div>
         
     </div>
 </div>
@@ -154,8 +171,42 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
+            <main class="main post-page">
+    <article class="article-entry">
+        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 行转列</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,<span class="keyword">GROUP_CONCAT</span>(sub_id) <span class="keyword">FROM</span> <span class="string">`group_test`</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">id</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更改数据库编码格式。</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">DATABASE</span> blog <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询建表建库语句。</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span>(<span class="keyword">database</span>) tablename(dbname)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更改表的编码格式。</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> <span class="keyword">test</span> <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 备份</span></span><br><span class="line">mysqldump -u root -p &gt; d:/1.sql</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">limit</span>  （页码<span class="number">-1</span>）*每页记录数，每页记录数</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="string">`blog`</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> <span class="string">'utf8'</span> <span class="keyword">COLLATE</span> <span class="string">'utf8_general_ci'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看编码类型</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">"%char%"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 设置编码类型</span></span><br><span class="line"><span class="keyword">SET</span> character_set_client=<span class="string">'utf8'</span>;</span><br><span class="line"><span class="keyword">SET</span> character_set_connection=<span class="string">'utf8'</span>;</span><br><span class="line"><span class="keyword">SET</span> character_set_results=<span class="string">'utf8'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看字段字符集</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">FULL</span> <span class="keyword">COLUMNS</span> <span class="keyword">FROM</span> <span class="keyword">object</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询当前未正常提交的事务 </span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> information_schema.innodb_trx; </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看当前mysql进程</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">processlist</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看完整进程</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">full</span> <span class="keyword">processlist</span>;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/12/12/common_regs/" title= (转)常用的一些正则表达式 >
+                    <span>Next Post</span>
+                    <span>(转)常用的一些正则表达式</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2016/09/22/ubuntu_git_info_show/" title= 在ubuntu终端下显示git分支信息 >
+                    <span>Previous Post</span>
+                    <span>在ubuntu终端下显示git分支信息</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
 
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
             <!-- profile -->
             
         </div>
@@ -192,6 +243,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        python learning · ckdk&#39;s blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">python learning</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>ckdk's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            python learning
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/03/13</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>知乎上看到几个题，发现自己掌握的不好，记录一下警示下自己。</p>
+<h1 id="Python函数参数默认值的陷阱"><a href="#Python函数参数默认值的陷阱" class="headerlink" title="Python函数参数默认值的陷阱"></a>Python函数参数默认值的陷阱</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以下程序输出什么</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x=[])</span>:</span></span><br><span class="line">    x.append(<span class="number">3</span>)</span><br><span class="line">    print(len(x))</span><br><span class="line">f()</span><br><span class="line">f()</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//结果</span><br><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p><em>解释：</em><br>如果参数的默认值是一个不可变(Imuttable)数值，那么在函数体内如果修改了该参数，那么参数就会重新指向另一个新的不可变值。而如果参数默认值是与上述方法一样，是一个可变对象(Muttable)，那么情况就比较糟糕了。所有函数体内对于该参数的修改，实际上都是对compile阶段就已经确定的那个对象的修改。</p>
+<p>可变类型（Muttable）：列表，字典<br>不可变类型（Imuttable）：数字，字符串，元组</p>
+<h1 id="全局变量的使用"><a href="#全局变量的使用" class="headerlink" title="全局变量的使用"></a>全局变量的使用</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">()</span>:</span></span><br><span class="line">    print(x)</span><br><span class="line">    x = <span class="number">3</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">j</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x = <span class="number">3</span></span><br><span class="line">    print(x)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span><span class="params">()</span>:</span></span><br><span class="line">    exec(<span class="string">'x = 4'</span>)</span><br><span class="line">    print(x)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    f()</span><br><span class="line"><span class="keyword">except</span>: </span><br><span class="line">    print(<span class="string">'Oops'</span>)</span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    g()</span><br><span class="line"><span class="keyword">except</span>: </span><br><span class="line">    print(<span class="string">'Oops'</span>)</span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    j()</span><br><span class="line"><span class="keyword">except</span>: </span><br><span class="line">    print(<span class="string">'Oops'</span>)</span><br><span class="line"><span class="keyword">try</span>: </span><br><span class="line">    h()</span><br><span class="line"><span class="keyword">except</span>: </span><br><span class="line">    print(<span class="string">'Oops'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">Oops</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<p><em>解释：</em><br>第一个try：函数内部可以访问全局变量。<br>第二个try：函数内部不能直接为全局变量赋值。<br>第三个try：使用global关键词，可以在函数内部访问并修改全局变量的值。<br>第四个try：可以看出exec的作用域是全局的，具体细节也不是很清楚。</p>
+<h1 id="python多继承顺序"><a href="#python多继承顺序" class="headerlink" title="python多继承顺序"></a>python多继承顺序</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">M</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(cls, name, bases, attrs, **kwargs)</span>:</span></span><br><span class="line">        super().__init__(name, bases, attrs, **kwargs)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                super(cls, self).f()</span><br><span class="line">            <span class="keyword">except</span> AttributeError:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            print(name)</span><br><span class="line">        cls.f = f</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(metaclass=M)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AA</span><span class="params">(A)</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AAA</span><span class="params">(AA)</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(metaclass=M)</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(AAA, B, metaclass=M)</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">C().f()</span><br><span class="line">print(C.__mro__)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">B </span><br><span class="line">A </span><br><span class="line">AA </span><br><span class="line">AAA </span><br><span class="line">C </span><br><span class="line">(&lt;class '__main__.C'&gt;, &lt;class '__main__.AAA'&gt;, &lt;class '__main__.AA'&gt;, &lt;class '__main__.A'&gt;, &lt;class '__main__.B'&gt;, &lt;class 'object'&gt;)</span><br></pre></td></tr></table></figure>
+<p><em>解释：</em><br>在python多继承中，如果每个类下有同名方法，那个调用的顺序是按照python的mro算法顺序来执行的，这里我们打印了C()的mro顺序 发现是 B, A, AA, AAA, C（对MRO算法有兴趣的可以自己去查阅相关资料）. 在f方法里，会调用父类的f方法，因此会层层调用每个类的f方法，在递归里，输出语句在递归调用之后，则最先运行的最后输出。因为不难得出结果就是mro的反顺序。</p>
+<h1 id="python类变量和实例变量"><a href="#python类变量和实例变量" class="headerlink" title="python类变量和实例变量"></a>python类变量和实例变量</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    x = <span class="number">2</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(self, y)</span>:</span></span><br><span class="line">        print(A.x, self.x)</span><br><span class="line">        self.x = self.x + y</span><br><span class="line">        print(A.x, self.x)</span><br><span class="line"></span><br><span class="line">A().f(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(2, 2)</span><br><span class="line">(2, 5)</span><br></pre></td></tr></table></figure>
+<p><em>解释：</em><br>在python里，不管是实例还是类本身，都有一个自己的__dict__属性,它的值为一个字典， key为属性名，value为属性值。在访问一个实例的属性时，查找顺序为优先查找自己的__dict__属性，然后是类，然后是父类。<br>第一个print，此时实例本身并没有x属性，所以A.x和self.x都读到了类属性中的x，所以都是2<br>第二个print，在这之前，self.x即实例的x属性已经被创建且赋值，存在了自身的__dict__属性中。</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/05/18/learn_to_use_tidb/" title= 测试搭建TIDB >
+                    <span>Next Post</span>
+                    <span>测试搭建TIDB</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/12/common_regs/" title= (转)常用的一些正则表达式 >
+                    <span>Previous Post</span>
+                    <span>(转)常用的一些正则表达式</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:578923779@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fantacing" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python函数参数默认值的陷阱"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Python&#x51FD;&#x6570;&#x53C2;&#x6570;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x9677;&#x9631;" class="headerlink" title="Python&#x51FD;&#x6570;&#x53C2;&#x6570;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x9677;&#x9631;"></a>Python&#x51FD;&#x6570;&#x53C2;&#x6570;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x9677;&#x9631;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#全局变量的使用"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x4F7F;&#x7528;"></a>&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x4F7F;&#x7528;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python多继承顺序"><span class="toc-number">3.</span> <span class="toc-text"><a href="#python&#x591A;&#x7EE7;&#x627F;&#x987A;&#x5E8F;" class="headerlink" title="python&#x591A;&#x7EE7;&#x627F;&#x987A;&#x5E8F;"></a>python&#x591A;&#x7EE7;&#x627F;&#x987A;&#x5E8F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python类变量和实例变量"><span class="toc-number">4.</span> <span class="toc-text"><a href="#python&#x7C7B;&#x53D8;&#x91CF;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;" class="headerlink" title="python&#x7C7B;&#x53D8;&#x91CF;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;"></a>python&#x7C7B;&#x53D8;&#x91CF;&#x548C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/common_regs/" >(转)常用的一些正则表达式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

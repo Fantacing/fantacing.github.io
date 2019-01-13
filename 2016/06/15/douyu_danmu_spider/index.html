@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        抓取斗鱼弹幕 · ckdk&#39;s blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">抓取斗鱼弹幕</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>ckdk's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            抓取斗鱼弹幕
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2016/06/15</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>之前喜欢在斗鱼看直播，后来在知乎上看到大神们爬取斗鱼TV弹幕，因为自己正在学python，所以也跃跃欲试。后来斗鱼在3月份发布了新的弹幕协议，那么今天就尝试用python获取斗鱼TV的房间弹幕。</p>
+<p>新版协议地址：<a href="http://dev-bbs.douyutv.com/forum.php?mod=viewthread&amp;tid=109" target="_blank" rel="noopener">《斗鱼弹幕服务器第三方接入协议》</a></p>
+<p>斗鱼TV弹幕采用了TCP协议传输。所以我们需要导入socket库，顺便贴出其余用到的库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket   <span class="comment">#TCP连接</span></span><br><span class="line"><span class="keyword">import</span> sys      <span class="comment">#用于退出程序</span></span><br><span class="line"><span class="keyword">import</span> struct    <span class="comment">#处理二进制数据</span></span><br><span class="line"><span class="keyword">import</span> time   <span class="comment">#时间和时间戳</span></span><br><span class="line"><span class="keyword">import</span> threading  <span class="comment">#多线程</span></span><br></pre></td></tr></table></figure>
+<p>然后开始连接到斗鱼的弹幕服务器， 初学python，代码略渣。。。</p>
+<h1 id="创建socket"><a href="#创建socket" class="headerlink" title="创建socket"></a>创建socket</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'创建socket成功！'</span></span><br><span class="line"><span class="keyword">except</span> socket.error,e:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'创建socket失败！'</span></span><br><span class="line">    sys.exit()</span><br></pre></td></tr></table></figure>
+<h1 id="连接到远程服务器"><a href="#连接到远程服务器" class="headerlink" title="连接到远程服务器"></a>连接到远程服务器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    s.connect((get_host_ip(<span class="string">'openbarrage.douyutv.com'</span>), <span class="number">8601</span>))</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'已连接到弹幕服务器'</span></span><br><span class="line"><span class="keyword">except</span> socket.error,e:</span><br><span class="line">    <span class="keyword">print</span> e</span><br></pre></td></tr></table></figure>
+<h1 id="发送登录请求"><a href="#发送登录请求" class="headerlink" title="发送登录请求"></a>发送登录请求</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">'type@=loginreq/roomid@='</span>+str(ROOMID)+<span class="string">'/0'</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">s.send(getbyte(message))</span><br><span class="line">reply = s.recv(<span class="number">4096</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'loginres'</span> <span class="keyword">in</span> reply:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'登录成功'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'登录失败'</span></span><br><span class="line"><span class="keyword">except</span> socket.error,e:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'登录失败'</span></span><br></pre></td></tr></table></figure>
+<h1 id="加入房间"><a href="#加入房间" class="headerlink" title="加入房间"></a>加入房间</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">'type@=joingroup/rid@='</span>+str(ROOMID)+<span class="string">'/gid@=-9999/0'</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    s.send(getbyte(message)) </span><br><span class="line">    s.settimeout(TIMEOUT) </span><br><span class="line">    reply = s.recv(<span class="number">4096</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'type@=error'</span> <span class="keyword">in</span> reply:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'加入房间'</span>+str(ROOMID)+<span class="string">'失败,请检查房间是否在线！'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        t1 = threading.Thread(target=send_heartbeat, args=(s,))</span><br><span class="line">        t2 = threading.Thread(target=recv_sock, args=(s,))</span><br><span class="line">        t1.start()</span><br><span class="line">        t2.start()</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'加入房间'</span>+str(ROOMID)+<span class="string">'成功'</span></span><br><span class="line">        print(<span class="string">'开始读取弹幕信息：'</span>)</span><br><span class="line">        print(<span class="string">'------------------------------------------------'</span>)</span><br><span class="line"><span class="keyword">except</span> socket.error,e:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'加入房间'</span>+str(ROOMID)+<span class="string">'失败！'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里需要注意的是，发送数据的时候，需要根据斗鱼消息协议加入协议头，否则收不到回复。<br>斗鱼消息协议格式如上所示，其中字段说明如下：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">消息长度：4 字节小端整数，表示整条消息（包括自身）长度（字节数）。</span><br><span class="line">消息长度出现两遍，二者相同。</span><br><span class="line">消息类型：2 字节小端整数，表示消息类型。取值如下：</span><br><span class="line">689  客户端发送给弹幕服务器的文本格式数据</span><br><span class="line">690  弹幕服务器发送给客户端的文本格式数据。</span><br><span class="line">加密字段：暂时未用，默讣为 0。</span><br><span class="line">保留字段：暂时未用，默讣为 0。</span><br></pre></td></tr></table></figure>
+<p>根据此协议写一个方法来给发送的数据部分加入协议头</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbyte</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="comment">#4字节消息长度（包括自身，出现两次）</span></span><br><span class="line">    a = struct.pack(<span class="string">'i'</span>, len(data)+<span class="number">8</span>)  </span><br><span class="line">    <span class="comment">#2字节消息类型 689/690</span></span><br><span class="line">    b = struct.pack(<span class="string">'h'</span>, <span class="number">689</span>)   </span><br><span class="line">    <span class="comment">#1字节的加密字段和一字节的保留字段 未有 默认0 </span></span><br><span class="line">    c = struct.pack(<span class="string">'b'</span>, <span class="number">0</span>)     </span><br><span class="line">    <span class="keyword">return</span> a*<span class="number">2</span>+b+c*<span class="number">2</span>+data</span><br></pre></td></tr></table></figure>
+<p>另外在上述第四步，我们开启了两个线程，一个用于接收弹幕，一个用于向斗鱼服务器发送心跳包，因为斗鱼为了减少不正常的连接浪费资源，所有需要连接向服务器发送心跳来保持连接。斗鱼的心跳间隔目前设置为45秒。所以我们需要每小于45秒就往服务器发送心跳包。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发送心跳包</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_heartbeat</span><span class="params">(c_sock)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        time.sleep(<span class="number">10</span>)</span><br><span class="line">        msg = <span class="string">'type@=keeplive/tick@='</span>+get_timestamp(get_datetime())+<span class="string">'/'</span></span><br><span class="line">        c_sock.send(getbyte(message))</span><br><span class="line">        time.sleep(<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#接受socket返回</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">recv_sock</span><span class="params">(c_sock)</span>:</span>  </span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        reply = c_sock.recv(<span class="number">4096</span>)</span><br><span class="line">        get_str(reply)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<p>其中get_str()方法，是用来格式化收到的消息的，我写的拙劣，就不贴出来了。另外本人初学python，写的代码难免有不规范和不足之处，见谅！这样获取斗鱼TV弹幕的功能就基本实现了。</p>
+<h1 id="result"><a href="#result" class="headerlink" title="result"></a>result</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">电竞小可爱小仙女 : 小宇宙爆发吧！                    </span><br><span class="line">大旭我套你个猴 : 哈哈哈啊啊                       </span><br><span class="line">旭哥哥人家还想要 : 给爸爸成儿子！！！                  </span><br><span class="line">听闻杨卓璇 : 碎税睡                           </span><br><span class="line">伊甸园之东 : 左边不慌，还想加仓                     </span><br><span class="line">天虐老贼单身狗 : 。。                          </span><br><span class="line">浪费青春c : 50块 巨款                        </span><br><span class="line">模凡 : 卖无色、                             </span><br><span class="line">旧城以西是离愁丶 : 成成宝宝                       </span><br><span class="line">宝哥我想中两次奖 : 哈哈已经是碎了不用再垫了               </span><br><span class="line">海外散仙历飞雨 : 卖无色                         </span><br><span class="line">猫九命阿 : 提前舒服                           </span><br><span class="line">怎能忘了西遊 : 已经是碎了                        </span><br><span class="line">苞米地穿西装 : 墨迹必碎 </span><br><span class="line">改名为套猴 : 看看你那个怂样                       </span><br><span class="line">装B王丶MaeKMO : 墨迹必碎                     </span><br><span class="line">九日九日梦想秀 : 成成成成成成成                     </span><br><span class="line">Piubull : 。。                          </span><br><span class="line">有很多人很多人很多 : 赞助必碎                      </span><br><span class="line">我不是任怡旭 : 右边我都梭哈了                      </span><br><span class="line">旭的吊大粗又黑 : 墨迹必碎                        </span><br><span class="line">99999改名字一定会中奖 : 一定不要成                 </span><br><span class="line">丨尚安哥哥丨 : 上16化粪池蝶泳                     </span><br><span class="line">Smile丶杨先森 : 碎                         </span><br><span class="line">泪寒i28861 : 理财                         </span><br><span class="line">炫迈牌套套XXXXL号 : 人格担保                    </span><br><span class="line">莪愿一人 : 无色换成矛盾卖了就行了                    </span><br><span class="line">暴打小佳佳 : 墨迹必碎                          </span><br><span class="line">HAC丶无聊抽抽 : 左边的拉了                      </span><br><span class="line">凌昕i : 成功我吃屎 记住我的ID 3                  </span><br><span class="line">恭喜我这个逼中奖了 : 给爸爸碎                      </span><br><span class="line">一点点兮欢 : 墨迹已经废了                        </span><br><span class="line">何必灬老友 : ？？？？？                         </span><br><span class="line">斯亻独憔悴 : 没有秘药</span><br><span class="line">401丶Torres : 基本上碎了，虽然我压的左边</span><br><span class="line">在妓院的和尚 : 卖无色啊</span><br><span class="line">A余咏记 : 有人要上天台了</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2016/09/22/ubuntu_git_info_show/" title= 在ubuntu终端下显示git分支信息 >
+                    <span>Next Post</span>
+                    <span>在ubuntu终端下显示git分支信息</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2016/05/23/summermote_upload_files/" title= summernote图片上传到服务器 >
+                    <span>Previous Post</span>
+                    <span>summernote图片上传到服务器</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:578923779@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fantacing" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#创建socket"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;socket" class="headerlink" title="&#x521B;&#x5EFA;socket"></a>&#x521B;&#x5EFA;socket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#连接到远程服务器"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x8FDE;&#x63A5;&#x5230;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x8FDE;&#x63A5;&#x5230;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;"></a>&#x8FDE;&#x63A5;&#x5230;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发送登录请求"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;" class="headerlink" title="&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;"></a>&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#加入房间"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x52A0;&#x5165;&#x623F;&#x95F4;" class="headerlink" title="&#x52A0;&#x5165;&#x623F;&#x95F4;"></a>&#x52A0;&#x5165;&#x623F;&#x95F4;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#result"><span class="toc-number">5.</span> <span class="toc-text"><a href="#result" class="headerlink" title="result"></a>result</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/common_regs/" >(转)常用的一些正则表达式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

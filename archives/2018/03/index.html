@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        git常用命令 · ckdk&#39;s blog
+        ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,22 +50,11 @@
     
 </head>
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >ckdk&#39;s blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">git常用命令</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>ckdk's blog</a>
 </header>
@@ -73,37 +62,21 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            git常用命令
-            <!-- 404 -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <!-- 文章页标签  -->
-            
-            <div class="post-intro-meta">
-                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/12/12</span>
-            </div>
         
     </div>
 </div>
@@ -171,63 +144,35 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h1><ul>
-<li>配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;  </span><br><span class="line">git config --global user.email example@e.com</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成密钥</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;example@e.com&quot;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>基本</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br><span class="line">git pull origin master</span><br><span class="line">git push origin test:test </span><br><span class="line">git add .</span><br><span class="line">git commit -am &apos;commit msg&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>保存、恢复进度</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除远程分支</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete test</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在ubuntu下使用git感觉push/pull/clone等操作都很慢，可以修改/etc/ssh/ssh_config文件，将GSSAPIAuthentication no打开， 亲测有明显效果。</p>
-</blockquote>
-
-    </article>
-    <!-- 前后页  -->
-    <ul class="post-pager">
-        
-            <li class="next">
-                <a href= "/2017/12/12/js_printer_code/" title= 记录一段js实现打字机效果的代码 >
-                    <span>Next Post</span>
-                    <span>记录一段js实现打字机效果的代码</span>
-                </a>
-            </li>
-        
-        
-            <li class="previous">
-                <a href= "/2017/12/12/common_regs/" title= (转)常用的一些正则表达式 >
-                    <span>Previous Post</span>
-                    <span>(转)常用的一些正则表达式</span>
-                </a>
-            </li>
-        
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
+            <main class="main index-page">
     
     
-    <!--PC版-->
-
-    <!--PC版-->
-
-
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2018/03/13/python_sample_question/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>python learning</span>
+                    </h2>
+                <div class="abstract-content">
+                    知乎上看到几个题，发现自己掌握的不好，记录一下警示下自己。
+Python函数参数默认值的陷阱123456# 以下程序输出什么def f(x=[]):    x.append(3)    print(len(x))f()f()
+123//结果12
+解释：如果参数的默认值是一个不可变(Imuttable)数值，那么在函数体内如果修改了该参数，那么参数就会重新指向另一个新的不可变值。而如果参数默认值是与上述方法一样，是一个可变对象(Muttable)，那么情况就比较糟糕了。所有函数体内对于该参数的修改，实际上都是对compile阶段就已经确定的那个对象的修改。
+可变类型（Muttable）：列...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/13</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
     
 </main>
             <!-- profile -->
@@ -258,20 +203,14 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
     </div>
     <!-- 不蒜子  -->
     
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper">
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#git常用命令"><span class="toc-number">1.</span> <span class="toc-text"><a href="#git&#x5E38;&#x7528;&#x547D;&#x4EE4;" class="headerlink" title="git&#x5E38;&#x7528;&#x547D;&#x4EE4;"></a>git&#x5E38;&#x7528;&#x547D;&#x4EE4;</span></a></li></ol>
-    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
@@ -335,12 +274,214 @@
     
     
     
-    <div class="total-archive"> Total : 5 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
     
     <div class="post-archive">
     
     
     
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
@@ -351,23 +492,27 @@
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/summermote_upload_files/" >summernote图片上传到服务器</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/js_printer_code/" >记录一段js实现打字机效果的代码</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/git_always_use_cmd/" >git常用命令</a>
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
         </li>
     
     </div>

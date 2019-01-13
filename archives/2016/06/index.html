@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        在ubuntu终端下显示git分支信息 · ckdk&#39;s blog
+        ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,22 +50,11 @@
     
 </head>
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >ckdk&#39;s blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">在ubuntu终端下显示git分支信息</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>ckdk's blog</a>
 </header>
@@ -73,37 +62,21 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            在ubuntu终端下显示git分支信息
-            <!-- 404 -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <!-- 文章页标签  -->
-            
-            <div class="post-intro-meta">
-                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/12/12</span>
-            </div>
         
     </div>
 </div>
@@ -171,36 +144,35 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="ubuntu终端显示git分支信息"><a href="#ubuntu终端显示git分支信息" class="headerlink" title="ubuntu终端显示git分支信息"></a>ubuntu终端显示git分支信息</h1><p>在ubuntu下使用git，在进到git目录里发现目录后面不显示分支信息。查资料得出解决方案，需要将以下代码加入到bashrc中:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.git-completion.bash</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> git_branch &#123;</span><br><span class="line">  ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || <span class="built_in">return</span>;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"("</span><span class="variable">$&#123;ref#refs/heads/&#125;</span><span class="string">")"</span>;</span><br><span class="line">  <span class="comment">#echo "("$&#123;ref#refs/heads/&#125;") ";</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> parse_git_dirty &#123;</span><br><span class="line">  <span class="built_in">local</span> git_status=$(git status 2&gt; /dev/null | tail -n1) || $(git status 2&gt; /dev/null | head -n 2 | tail -n1);</span><br><span class="line">  <span class="keyword">if</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> != <span class="string">""</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">local</span> git_now; <span class="comment"># 标示</span></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> =~ nothing\ to\ commit || <span class="string">"<span class="variable">$git_status</span>"</span> =~ Your\ branch\ is\ up\-to\-date\ with ]]; <span class="keyword">then</span></span><br><span class="line">  git_now=<span class="string">"="</span>;</span><br><span class="line">  <span class="keyword">elif</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> =~ Changes\ not\ staged || <span class="string">"<span class="variable">$git_status</span>"</span> =~ no\ changes\ added ]]; <span class="keyword">then</span></span><br><span class="line">  git_now=<span class="string">'~'</span>;</span><br><span class="line">  <span class="keyword">elif</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> =~ Changes\ to\ be\ committed ]]; <span class="keyword">then</span> <span class="comment">#Changes to be committed</span></span><br><span class="line">  git_now=<span class="string">'*'</span>;</span><br><span class="line">  <span class="keyword">elif</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> =~ Untracked\ files ]]; <span class="keyword">then</span></span><br><span class="line">  git_now=<span class="string">"+"</span>;</span><br><span class="line">  <span class="keyword">elif</span> [[ <span class="string">"<span class="variable">$git_status</span>"</span> =~ Your\ branch\ is\ ahead ]]; <span class="keyword">then</span></span><br><span class="line">  git_now=<span class="string">"#"</span>;</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;git_now&#125;</span>"</span>;</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#PS1="[\[\e[1;35m\]\u\[\e[1;36m\]\$(git_branch)\[\033[0;31m\]\$(parse_git_dirty)\[\033[0m]\$"</span></span><br><span class="line">PS1=<span class="string">"[\[\e[1;35m\]\u\[\e[1;32m\]\w\[\e[0m\]] \[\e[0m\]\[\e[1;36m\]\$(git_branch)\[\033[0;31m\]\$(parse_git_dirty)\[\033[0m\]]\$"</span></span><br></pre></td></tr></table></figure>
-<p>git-completion.bash可以在网上自行google下载。</p>
-
-    </article>
-    <!-- 前后页  -->
-    <ul class="post-pager">
-        
-            <li class="next">
-                <a href= "/2017/12/12/common_regs/" title= (转)常用的一些正则表达式 >
-                    <span>Next Post</span>
-                    <span>(转)常用的一些正则表达式</span>
-                </a>
-            </li>
-        
-        
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
+            <main class="main index-page">
     
     
-    <!--PC版-->
-
-    <!--PC版-->
-
-
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2016/06/15/douyu_danmu_spider/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>抓取斗鱼弹幕</span>
+                    </h2>
+                <div class="abstract-content">
+                    之前喜欢在斗鱼看直播，后来在知乎上看到大神们爬取斗鱼TV弹幕，因为自己正在学python，所以也跃跃欲试。后来斗鱼在3月份发布了新的弹幕协议，那么今天就尝试用python获取斗鱼TV的房间弹幕。
+新版协议地址：《斗鱼弹幕服务器第三方接入协议》
+斗鱼TV弹幕采用了TCP协议传输。所以我们需要导入socket库，顺便贴出其余用到的库。
+12345import socket   #TCP连接import sys      #用于退出程序import struct    #处理二进制数据import time   #时间和时间戳import threading  #多线程
+然后开始连接到斗鱼的弹...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2016/06/15</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
     
 </main>
             <!-- profile -->
@@ -231,20 +203,14 @@
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
     </div>
     <!-- 不蒜子  -->
     
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper">
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu终端显示git分支信息"><span class="toc-number">1.</span> <span class="toc-text"><a href="#ubuntu&#x7EC8;&#x7AEF;&#x663E;&#x793A;git&#x5206;&#x652F;&#x4FE1;&#x606F;" class="headerlink" title="ubuntu&#x7EC8;&#x7AEF;&#x663E;&#x793A;git&#x5206;&#x652F;&#x4FE1;&#x606F;"></a>ubuntu&#x7EC8;&#x7AEF;&#x663E;&#x793A;git&#x5206;&#x652F;&#x4FE1;&#x606F;</span></a></li></ol>
-    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
@@ -308,12 +274,214 @@
     
     
     
-    <div class="total-archive"> Total : 5 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
     
     <div class="post-archive">
     
     
     
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
@@ -324,23 +492,27 @@
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/summermote_upload_files/" >summernote图片上传到服务器</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/js_printer_code/" >记录一段js实现打字机效果的代码</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/git_always_use_cmd/" >git常用命令</a>
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
         </li>
     
     </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        [404] · ckdk&#39;s blog
+        使用xcode ios模拟器调试Huilder打包的APP · ckdk&#39;s blog
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,13 +50,22 @@
     
 </head>
     
-        <body class="four-zero-four-body">
+        <body class="post-body">
     
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >ckdk&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">使用xcode ios模拟器调试Huilder打包的APP</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>ckdk's blog</a>
 </header>
@@ -66,27 +75,35 @@
     <!-- 主页  -->
     
     
-    <!-- about页 -->
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/404.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            [404]
-            <!-- about -->
+            使用xcode ios模拟器调试Huilder打包的APP
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-                page not found.xi xi xi.
+            
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/11/06</span>
+            </div>
         
     </div>
 </div>
@@ -154,8 +171,61 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="xcode-ios模拟器安装ipa文件"><a href="#xcode-ios模拟器安装ipa文件" class="headerlink" title="xcode ios模拟器安装ipa文件"></a>xcode ios模拟器安装ipa文件</h1><ul>
+<li><p>将.ipa文件改为.zip文件 然后解压缩</p>
+</li>
+<li><p>进入解压后的目录 执行以下命令</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/Xcode.app/Contents/Developer/usr/bin/simctl install booted DCloud_Pandora.app</span><br></pre></td></tr></table></figure>
+<h1 id="xcode手动下载模拟器"><a href="#xcode手动下载模拟器" class="headerlink" title="xcode手动下载模拟器"></a>xcode手动下载模拟器</h1><ul>
+<li><p>打开console，点击清除</p>
+</li>
+<li><p>点击模拟器的下载按钮，然后点击取消</p>
+</li>
+<li><p>在console中找到刚才的操作，找到对应dmg文件的网址，将dmg下载下载</p>
+</li>
+<li><p>将下载下来的dmg拷贝到~/Library/Caches/com.apple.dt.Xcode</p>
+</li>
+<li><p>在模拟器下载界面点下载 会自动跳到安装</p>
+</li>
+</ul>
 
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2019/01/14/unit_test/" title= 单元测试 >
+                    <span>Next Post</span>
+                    <span>单元测试</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2018/05/31/djano_and_vue/" title= 前后端分离实践(django + vue) >
+                    <span>Previous Post</span>
+                    <span>前后端分离实践(django + vue)</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
             <!-- profile -->
             
         </div>
@@ -192,6 +262,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#xcode-ios模拟器安装ipa文件"><span class="toc-number">1.</span> <span class="toc-text"><a href="#xcode-ios&#x6A21;&#x62DF;&#x5668;&#x5B89;&#x88C5;ipa&#x6587;&#x4EF6;" class="headerlink" title="xcode ios&#x6A21;&#x62DF;&#x5668;&#x5B89;&#x88C5;ipa&#x6587;&#x4EF6;"></a>xcode ios&#x6A21;&#x62DF;&#x5668;&#x5B89;&#x88C5;ipa&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#xcode手动下载模拟器"><span class="toc-number">2.</span> <span class="toc-text"><a href="#xcode&#x624B;&#x52A8;&#x4E0B;&#x8F7D;&#x6A21;&#x62DF;&#x5668;" class="headerlink" title="xcode&#x624B;&#x52A8;&#x4E0B;&#x8F7D;&#x6A21;&#x62DF;&#x5668;"></a>xcode&#x624B;&#x52A8;&#x4E0B;&#x8F7D;&#x6A21;&#x62DF;&#x5668;</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

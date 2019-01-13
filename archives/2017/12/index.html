@@ -149,122 +149,16 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/12/summermote_upload_files/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>summernote图片上传到服务器</span>
-                    </h2>
-                <div class="abstract-content">
-                    summernote图片上传到服务器
-Summernote是一个开源的WYSIWYG编辑器。安装方便，使用简单。在网页中引用相关的css和js就可以开始使用了。
-在网页中定义一个summernote的div，然后在加载网页的时候初始化summernote：1&lt;div id="summernote" name="summernote"&gt;&lt;/div&gt;
-1234$('#summernote').summernote(&#123;    height: 400, //富文本编辑器高度    lang: 'zh-CN', //语言使用中文 &#125;);
-这样就可以在网页...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/12</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/12/js_printer_code/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>记录一段js实现打字机效果的代码</span>
-                    </h2>
-                <div class="abstract-content">
-                    记录一段js实现打字机效果的代码1234567891011121314151617181920212223(function(a) &#123;        a.fn.typewriter = function() &#123;                this.each(function() &#123;                        var d = a(this),                        c = d.html(),                        b = 0;                        d.html("...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/12</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/12/git_always_use_cmd/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>git常用命令</span>
-                    </h2>
-                <div class="abstract-content">
-                    git常用命令
-配置
-
-12git config --global user.name &quot;your name&quot;  git config --global user.email example@e.com
-
-生成密钥
-
-1ssh-keygen -t rsa -C &quot;example@e.com&quot;
-
-基本
-
-12345git push origin mastergit pull origin mastergit push origin test:test git add .git commit -am &apos;commit msg&apos;
-
-保存...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/12</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
             <a class="content-show-full" href = "/2017/12/12/common_regs/" >
                     <h2 class="abstract-title">
                         
                         <span>(转)常用的一些正则表达式</span>
                     </h2>
                 <div class="abstract-content">
-                    (转)常用的一些正则表达式1 . 校验密码强度密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。1^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$
-2. 校验中文字符串仅能是中文。1^[\\u4e00-\\u9fa5]&#123;0,&#125;$
-3. 由数字、26个英文字母或下划线组成的字符串1^\\w+$
-4. 校验E-Mail 地址同密码一样，下面是E-mail地址合规性的正则检查语句。1[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/12</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/12/ubuntu_git_info_show/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>在ubuntu终端下显示git分支信息</span>
-                    </h2>
-                <div class="abstract-content">
-                    ubuntu终端显示git分支信息在ubuntu下使用git，在进到git目录里发现目录后面不显示分支信息。查资料得出解决方案，需要将以下代码加入到bashrc中:
-1234567891011121314151617181920212223242526272829source ~/.git-completion.bashfunction git_branch &#123;  ref=$(git symbolic-ref HEAD 2&gt; /dev/null) || return;  echo "("$&#123;ref#refs/heads/&#125;")";  #echo "("...
+                    校验密码强度密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。1^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$
+校验中文字符串仅能是中文。1^[\\u4e00-\\u9fa5]&#123;0,&#125;$
+由数字、26个英文字母或下划线组成的字符串1^\\w+$
+校验E-Mail 地址同密码一样，下面是E-mail地址合规性的正则检查语句。1[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&apos;*+/=?^_`&#12...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -308,7 +202,8 @@ Summernote是一个开源的WYSIWYG编辑器。安装方便，使用简单。在
     
     <!-- powered by Hexo  -->
     <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span> -->
+        <span id="hexo-power">© Copyright 2017     鲁ICP备16009271号</span>
     </div>
     <!-- 不蒜子  -->
     
@@ -378,12 +273,214 @@ Summernote是一个开源的WYSIWYG编辑器。安装方便，使用简单。在
     
     
     
-    <div class="total-archive"> Total : 5 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
     
     <div class="post-archive">
     
     
     
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2016/04/15/git_always_use_cmd/" >git常用命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/01/14/unit_test/" >单元测试</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/04/17/js_printer_code/" >记录一段js实现打字机效果的代码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href= "/2018/11/06/app_run_on_xcode_simulator/" >使用xcode ios模拟器调试Huilder打包的APP</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2017/08/10/unfamaliar_mysql_language/" >记录一些不熟悉mysql语句和命令</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2016/06/15/douyu_danmu_spider/" >抓取斗鱼弹幕</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2018/05/31/djano_and_vue/" >前后端分离实践(django + vue)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2018/05/18/learn_to_use_tidb/" >测试搭建TIDB</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/python_sample_question/" >python learning</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
@@ -394,23 +491,27 @@ Summernote是一个开源的WYSIWYG编辑器。安装方便，使用简单。在
         </li>
     
     
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2016/09/22/ubuntu_git_info_show/" >在ubuntu终端下显示git分支信息</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/summermote_upload_files/" >summernote图片上传到服务器</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2016/05/23/summermote_upload_files/" >summernote图片上传到服务器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/js_printer_code/" >记录一段js实现打字机效果的代码</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href= "/2017/12/12/git_always_use_cmd/" >git常用命令</a>
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2016/04/12/csharp_mutliprocess/" >c#异步连接TCP服务器</a>
         </li>
     
     </div>
